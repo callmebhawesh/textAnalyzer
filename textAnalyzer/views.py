@@ -11,6 +11,8 @@ def analyze(request):
     makeLower = request.GET.get('makeLower', 'off')
     kbtogb = request.GET.get('kbtogb', 'off')
     mbtogb = request.GET.get('mbtogb', 'off')
+    pbtogb = request.GET.get("pbtogb", "off")
+    usdtonpr = request.GET.get("usdtonpr", "off")
 
     if removepunc == 'on':
         punctuations = '''+-*/=_)(*&^%$£"![{]};:'@#~,<.>/?|'''
@@ -55,6 +57,19 @@ def analyze(request):
         param = {'textWritten':textWritten, 'analyzedText' :analyzedText}
         return render(request, "analyze.html", param)
         
+    elif pbtogb == "on":
+        text = int(text)
+        analyzedText = text * 1000000
+        textWritten = text
+        param = {'textWritten':textWritten, 'analyzedText' :analyzedText}
+        return render(request, "analyze.html", param)
+
+    elif usdtonpr == "on":
+        text = int(text)
+        analyzedText = text * 119
+        textWritten = text
+        param = {'textWritten':textWritten, 'analyzedText':analyzedText}
+        return render(request, "analyze.html", param)
 
 
     else:
