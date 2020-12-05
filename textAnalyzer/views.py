@@ -19,67 +19,72 @@ def analyze(request):
     if removepunc == 'on':
         punctuations = '''+-*/=_)(*&^%$£"![{]};:'@#~,<.>/?|'''
         analyzedText = ""
-        textWritten = text
 
         for char in text:
             if char not in punctuations:
                 analyzedText += char
-        param = {'textWritten':textWritten, 'analyzedText' :analyzedText}
+        param = {'textWritten':"The Punctuations has been removed from your text", 'analyzedText' :analyzedText}
         return render(request, "analyze.html", param)
 
     elif makeCapital == 'on':
         analyzedText = ""
-        textWritten = text
+
         for char in text:
             analyzedText += char.upper()
-        param = {'textWritten':textWritten, 'analyzedText' :analyzedText}
+        param = {'textWritten':"You text has been successfully capitalized", 'analyzedText' :analyzedText}
         return render(request, "analyze.html", param)
 
     elif makeLower == 'on':
         analyzedText = ""
-        textWritten = text
+        
         for char in text:
             analyzedText += char.lower()
-        param = {'textWritten':textWritten, 'analyzedText' :analyzedText}
+        param = {'textWritten':"You text has been successfully lower cased", 'analyzedText' :analyzedText}
         return render(request, "analyze.html", param)
 
     elif kbtogb == "on":
         text = int(text)
         analyzedText = text * 0.000001
-        textWritten = text
+       
 
-        param = {'textWritten':textWritten, 'analyzedText' :analyzedText}
+        param = {'textWritten':"Kilobyte has been successfully converted into Gigabyte", 'analyzedText' :analyzedText}
         return render(request, "analyze.html", param)
 
     elif mbtogb == "on":
         text = int(text)
         analyzedText = text * 0.001
-        textWritten = text
+        
 
-        param = {'textWritten':textWritten, 'analyzedText' :analyzedText}
+        param = {'textWritten':"Megabyte has been successfully converted into Gigabyte", 'analyzedText' :analyzedText}
         return render(request, "analyze.html", param)
         
     elif pbtogb == "on":
         text = int(text)
         analyzedText = text * 1000000
-        textWritten = text
-        param = {'textWritten':textWritten, 'analyzedText' :analyzedText}
+       
+        param = {'textWritten':"Petabyte has been successfully converted into Gigabyte", 'analyzedText' :analyzedText}
         return render(request, "analyze.html", param)
 
     elif usdtonpr == "on":
         text = int(text)
         analyzedText = text * 119
-        textWritten = text
-        param = {'textWritten':textWritten, 'analyzedText':analyzedText}
+       
+        param = {'textWritten':"USD has been successfully converted into Nepali Rupees", 'analyzedText':analyzedText}
         return render(request, "analyze.html", param)
 
     elif audtonpr == "on":
         text = int(text)
         analyzedText = text * 87.63
-        textWritten = text
-        param = {'textWritten':textWritten, 'analyzedText':analyzedText}
+  
+        param = {'textWritten':"AUD has been successfully converted into Nepali Rupees", 'analyzedText':analyzedText}
         return render(request, "analyze.html", param)
 
 
     else:
         return HttpResponse("Error: Please check any box.")
+
+def about(request):
+    return render(request, 'about.html')
+
+def contact(request):
+    return render(request, 'contact.html')
